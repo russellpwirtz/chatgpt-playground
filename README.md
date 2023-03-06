@@ -16,4 +16,4 @@ Then, rename `.env.example` to `.env`, plug in your API key, and scripts should 
 `pip install -r requirements.txt`
 
 - run script \
-`python tamagotchi.py`
+`python story.py`
