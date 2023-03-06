@@ -37,8 +37,11 @@ def get_random_names(genre: str, role: str) -> list[str]:
     response = response["choices"][0]["message"]["content"].strip()
 
     cleaned_response = response.split(',')
-    cleaned_list = [entry.replace('```', '').replace(
-        '\n', '').strip() for entry in cleaned_response]
+    cleaned_list = [entry
+                    .replace('`', '')
+                    .replace('\"', '')
+                    .replace('\n', '')
+                    .strip() for entry in cleaned_response]
 
     # print(f"Cleaned names: {cleaned_list}")
     return cleaned_list

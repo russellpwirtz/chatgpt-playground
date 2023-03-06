@@ -25,9 +25,8 @@ while genre not in random_genres:
     genre = input(f"Which genre? {random_genres}\n")
 
 sidekicks = get_random_names(genre=genre, role="sidekick")
+# print(f"Names: {sidekicks}")
 sidekick = sidekicks[0]
-print(f"Names: {sidekicks}")
-print(f"Name: {sidekick}")
 
 system_content = f"""
 You are {sidekick}
