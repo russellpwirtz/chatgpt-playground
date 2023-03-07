@@ -5,13 +5,10 @@ import time
 
 load_dotenv()
 
-# see .env
 api_key = os.environ.get("OPENAI_API_KEY")
-# org_id = os.environ.get("OPENAI_ORG_ID")
 model_engine = os.getenv("MODEL_ENGINE")
 
 openai.api_key = api_key
-# openai.organization = org_id
 
 messages = []
 messages.append(

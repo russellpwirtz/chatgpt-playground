@@ -24,14 +24,21 @@ Then, rename `.env.example` to `.env`, plug in your API key, and scripts should 
 #### Converts code from one format to another (reads from input.txt)
 `code_convert.py`
 
+## Code Review bot: 
+#### Reviews code from various fictitious coworkers (reads from input.txt)
+`code_review.py`
+
+## Chat Assistant bot:
+#### Have a conversation with anyone you want
+`custom_chat.py`
+
 ## Story Generator bot:
 #### Leads the hero through a journey in the chosen genre
 `story.py`
 
 ## Tamagotchi bot:
 #### A buddy to help pass the time
-`tamagotchi.py`
+`tamagotchi.py` 
 
-
-
-
+# Acknowledgments
+#### Code inspired by: https://gist.github.com/Darkflib/f1c63164397a50aef8ccf7d8c2a142e0
