@@ -17,3 +17,21 @@ Then, rename `.env.example` to `.env`, plug in your API key, and scripts should 
 
 - run script \
 `python story.py`
+
+# Bots:
+
+## Code Conversion bot: 
+#### Converts code from one format to another (reads from input.txt)
+`code_convert.py`
+
+## Story Generator bot:
+#### Leads the hero through a journey in the chosen genre
+`story.py`
+
+## Tamagotchi bot:
+#### A buddy to help pass the time
+`tamagotchi.py`
+
+
+
+
