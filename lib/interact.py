@@ -12,8 +12,11 @@ model_engine = os.getenv("MODEL_ENGINE")
 openai.api_key = api_key
 
 
-def interact_with_user(name: str, messages: list, chat_history: str = ""):
+def interact_with_user(name: str, messages: list, chat_history: str = "", chatbot_start_first: bool = False):
     user_input = ""
+
+    if chatbot_start_first:
+        process_messages(name, messages, chat_history, user_input)
 
     while user_input != "!endchat":
         user_input = input("\033[34mYou: \033[0m")
@@ -21,16 +24,20 @@ def interact_with_user(name: str, messages: list, chat_history: str = ""):
             break
 
         messages.append({"role": "user", "content": user_input})
-        response = openai.ChatCompletion.create(
-            model=model_engine,
-            messages=messages)
-
-        reply = response["choices"][0]["message"]["content"]
-        messages.append({"role": "assistant", "content": reply})
-        chat_history += f"\nUser: {user_input}\n{name}: {reply}\n"
-        print("\n\033[32m" + f"{name}:\033[0m " + reply + "\n")
+        process_messages(name, messages, chat_history, user_input)
 
     chat_log = input(
         "\n\nPlease enter a filename to save the chat log to (without the .log extension): ")
     with open(f"{chat_log}.log", "w") as f:
         f.write(re.sub("\033\[\d+m", "", chat_history))
+
+
+def process_messages(name, messages, chat_history, user_input):
+    response = openai.ChatCompletion.create(
+        model=model_engine,
+        messages=messages)
+
+    reply = response["choices"][0]["message"]["content"]
+    messages.append({"role": "assistant", "content": reply})
+    chat_history += f"\nUser: {user_input}\n{name}: {reply}\n"
+    print("\n\033[32m" + f"{name}:\033[0m " + reply + "\n")
