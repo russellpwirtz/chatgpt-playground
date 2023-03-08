@@ -6,7 +6,7 @@ load_dotenv()
 
 messages = []
 chatbot = input(
-    "\n\033[33mWhat type of chatbot would you like to create? To create a character based on conversations.txt press Enter\033[0m \n\n> ")
+    "\n\033[33mWhat type of chatbot would you like to create? To create a character based on input.txt press Enter\033[0m \n\n> ")
 
 if chatbot:
     messages.append(

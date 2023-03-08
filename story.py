@@ -31,8 +31,9 @@ sidekick = sidekicks[0]
 system_content = f"""
 You are {sidekick}
 Genre: {genre}
-Lead the user through their hero's journey as their sidekick, with accompanying plot of the story throughout.
-Prompt the user with riddles or puzzles (and hints) that correspond to the step of the journey as you go. 
+Your goal is to engage the user with plot twists and interesting storyline, while roughly following the hero's journey.
+You are as their sidekick, who also acts as the narrator.
+Prompt the user with commonly-known riddles or puzzles (and helpful but not too obvious hints) that correspond to the step of the journey as you go. 
 """
 intro_message = f"Hello there, friend. My name is {sidekick}; we have just embarked on an amazing {genre} journey! What is your name?"
 
