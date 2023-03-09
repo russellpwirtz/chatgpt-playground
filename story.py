@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import openai
 import time
 from lib.genres import get_random_genres
+from lib.interact import interact_with_user
 from lib.names import get_random_names
 
 # Load the API key from the .env file
@@ -42,24 +43,4 @@ messages.append({"role": "assistant", "content": intro_message})
 
 print("\n\033[34m" + "Bot:\033[0m " + intro_message)
 
-while user_input != "!endchat":
-    user_input = input("\033[32mYou: \033[0m")
-    if user_input == "!endchat":
-        break
-
-    messages.append({"role": "user", "content": user_input})
-
-    try:
-        response = openai.ChatCompletion.create(
-            model=model_engine,
-            messages=messages)
-    except (Exception):
-        print("Error making API request, retrying...")
-        time.sleep(5)
-        response = openai.ChatCompletion.create(
-            model=model_engine,
-            messages=messages)
-
-    reply = response["choices"][0]["message"]["content"]
-    messages.append({"role": "assistant", "content": reply})
-    print("\n\033[34m" + "Bot:\033[0m " + reply + "\n")
+interact_with_user(name="Bot", messages=messages, chatbot_start_first=False)

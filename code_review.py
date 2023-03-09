@@ -18,16 +18,23 @@ interaction_messages = []
 with open('input.txt', 'r') as file:
     file_contents = file.read()
 
+should_provide_code = input(
+    "\033[34mDo you want to see what the updated code looks like? y/n \033[0m")
+
+
 system_content = f"""
 You are a code debug bot. 
 Your role is to take in code and explain how it could have better quality.
-Provide the updated code as the primary goal.
-Then provide feedback as if it came from coworkers in a room together.
+Provide feedback as if it came from coworkers in a room together.
 They are:
  - junior dev
  - senior dev
  - architect
 """
+if 'y' in should_provide_code.lower():
+    system_content += '\nProvide the updated code as the primary goal.'
+else:
+    system_content += '\nDo not provide updated code.'
 
 system_content = {"role": "system", "content": system_content}
 messages.append(system_content)
