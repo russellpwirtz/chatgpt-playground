@@ -18,19 +18,30 @@ interaction_messages = []
 with open('input.txt', 'r') as file:
     file_contents = file.read()
 
+specific_instructions = input(
+    "\033[34mDo you have any specific instructions? [enter to do code review] \033[0m")
+
 should_provide_code = input(
     "\033[34mDo you want to see what the updated code looks like? y/n \033[0m")
 
+system_content = "You are a code review bot."
 
-system_content = f"""
-You are a code debug bot. 
-Your role is to take in code and explain how it could have better quality.
-Provide feedback as if it came from coworkers in a room together.
-They are:
- - junior dev
- - senior dev
- - architect
-"""
+if specific_instructions:
+    system_content += f"""
+      Your role is to review code with specific instructions: {specific_instructions}
+      """
+else:
+    system_content += f"""
+      Your role is to review code and explain how it could have better quality.
+      Provide feedback as if it came from coworkers in a room together.
+      Each team member will take a turn giving their feedback.
+      - intern
+      - junior dev
+      - senior dev
+      - architect
+      - CTO
+      """
+
 if 'y' in should_provide_code.lower():
     system_content += '\nProvide the updated code as the primary goal.'
 else:
@@ -39,15 +50,6 @@ else:
 system_content = {"role": "system", "content": system_content}
 messages.append(system_content)
 interaction_messages.append(system_content)
-
-assistant_messages = [
-    "We're also going to include the intern and a peer from a different company to the list of coworkers providing feedback to give them some extra experience",
-    "Please provide the code and I will debug it.",
-]
-
-for message in assistant_messages:
-    messages.append({"role": "assistant", "content": message})
-    interaction_messages.append({"role": "assistant", "content": message})
 
 # for the first pass
 messages.append({"role": "user", "content": file_contents})
